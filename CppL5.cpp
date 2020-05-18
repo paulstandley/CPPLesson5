@@ -23,3 +23,19 @@ void prime_array_int()
 	}
 }
 
+void double_array()
+{
+	double array[3]; // allocate 3 doubles
+	array[0] = 2.0;
+	array[1] = 3.0;
+	array[2] = 4.3;
+
+	std::cout << "The average is " << (array[0] + array[1] + array[2]) / 3 << "\n";
+
+	for (int count = 0; count < 3; count++)
+	{
+		std::cout << "The double array index is "
+			<< count << " and the value is " << array[count] << std::endl;
+	}
+}
+

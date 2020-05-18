@@ -5,27 +5,24 @@
 #include <iostream>
 #include "CppLesson5.h"
 
-void double_array()
+struct Rectangle
 {
-    double array[3]; // allocate 3 doubles
-    array[0] = 2.0;
-    array[1] = 3.0;
-    array[2] = 4.3;
+	int length;
+	int width;
+};
 
-    std::cout << "The average is " << (array[0] + array[1] + array[2]) / 3 << "\n";
-
-	for (int count = 0; count < 3; count++)
-	{
-		std::cout << "The double array index is "
-			<< count << " and the value is " << array[count] << std::endl;
-	}
+void select_struct_array()
+{
+	Rectangle rects[5]; // declare an array of 5 Rectangle
+	rects[0].length = 24;
+	rects[0].width = 18;
+	std::cout << rects[0].length << '\t' << rects[0].width << std::endl;
 }
-
 
 int main()
 {
+	select_struct_array();
 	
-	double_array();
 
 	return 0;
 }
