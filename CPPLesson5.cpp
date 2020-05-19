@@ -5,27 +5,30 @@
 #include <iostream>
 #include "CppLesson5.h"
 
-void fixed_array()
+namespace StudentNames
 {
-	// use initializer list to initialize the fixed array
-	int prime_0[5] = { 2, 3, 5, 7, 11 }; 
-
-	// Initialize all elements to 0
-	int array_0[5] = { };
-
-	// Initialize all elements to 0.0
-	double array_1[5] = { };
-
-	int prime_1[5]{ 2, 3, 5, 7, 11 }; 
-	// use uniform initialization to initialize the fixed array
-	// note the lack of the equals sign in this syntax
-
-	// explicitly define length of the array
-	int array_2[5] = { 0, 1, 2, 3, 4 }; 
-
-	// let initializer list set length of the array
-	int array_3[] = { 0, 1, 2, 3, 4 }; 
+    enum StudentNames
+    {
+        KENNY, // 0
+        KYLE, // 1
+        STAN, // 2
+        BUTTERS, // 3
+        CARTMAN, // 4
+        WENDY, // 5
+        MAX_STUDENTS // 6
+    };
 }
+
+void arrays_and_enums()
+{
+    int testScores[StudentNames::MAX_STUDENTS]; // allocate 6 integers
+    testScores[StudentNames::STAN] = 76;
+
+    //use a static_cast to convert the enumerator to an integer
+    int testScores_0[static_cast<int>(StudentNames::MAX_STUDENTS)]; // allocate 6 integers
+    testScores_0[static_cast<int>(StudentNames::STAN)] = 76;
+}
+
 
 int main()
 {

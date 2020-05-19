@@ -55,45 +55,45 @@ void select_struct_array()
 
 void array_subscripts()
 {
-    int array[5]; // declare an array of length 5
+    int array_0[5]; // declare an array of length 5
 
     // using a literal (constant) index:
-    array[1] = 7; // ok
+    array_0[1] = 7; // ok
 
     // using an enum (constant) index
     enum Animals
     {
         ANIMAL_CAT = 2
     };
-    array[ANIMAL_CAT] = 4; // ok
+    array_0[ANIMAL_CAT] = 4; // ok
 
     // using a variable (non-constant) index:
     short index = 3;
-    array[index] = 7; // ok
+    array_0[index] = 7; // ok
 
     // using an expression that evaluates to an integer index:
-    array[1 + 2] = 7; // ok
+    array_0[1 + 2] = 7; // ok
 }
 
 void fixed_array_declarations()
 {
     // using a literal constant
-    int array[5]; // Ok
+    int array_0[5]; // Ok
 
     // using a macro symbolic constant
 #define ARRAY_LENGTH 5
-    int array[ARRAY_LENGTH]; // Syntactically okay, but don't do this
+    int array_1[ARRAY_LENGTH]; // Syntactically okay, but don't do this
 
     // using a symbolic constant
     const int arrayLength = 5;
-    int array[arrayLength]; // Ok
+    int array_2[arrayLength]; // Ok
 
     // using an enumerator
     enum ArrayElements
     {
         MAX_ARRAY_LENGTH = 5
     };
-    int array[MAX_ARRAY_LENGTH]; // Ok
+    int array_3[MAX_ARRAY_LENGTH]; // Ok
 
     /*
     // using a non-const variable
@@ -106,4 +106,28 @@ void fixed_array_declarations()
     int array[length]; // Not ok
     */
 }
+
+void fixed_array_initialization()
+{
+	// use initializer list to initialize the fixed array
+	int prime_0[5] = { 2, 3, 5, 7, 11 };
+
+	// Initialize all elements to 0
+	int array_0[5] = { };
+
+	// Initialize all elements to 0.0
+	double array_1[5] = { };
+
+	int prime_1[5]{ 2, 3, 5, 7, 11 };
+	// use uniform initialization to initialize the fixed array
+	// note the lack of the equals sign in this syntax
+
+	// explicitly define length of the array
+	int array_2[5] = { 0, 1, 2, 3, 4 };
+
+	// let initializer list set length of the array
+	int array_3[] = { 0, 1, 2, 3, 4 };
+}
+
+
 
