@@ -129,5 +129,30 @@ void fixed_array_initialization()
 	int array_3[] = { 0, 1, 2, 3, 4 };
 }
 
+namespace StudentNames
+{
+    enum StudentNames
+    {
+        KENNY, // 0
+        KYLE, // 1
+        STAN, // 2
+        BUTTERS, // 3
+        CARTMAN, // 4
+        WENDY, // 5
+        MAX_STUDENTS // 6
+    };
+}
+
+void arrays_and_enums()
+{
+    int testScores[StudentNames::MAX_STUDENTS]; // allocate 6 integers
+    testScores[StudentNames::STAN] = 76;
+
+    //use a static_cast to convert the enumerator to an integer
+    int testScores_0[static_cast<int>(StudentNames::MAX_STUDENTS)]; // allocate 6 integers
+    testScores_0[static_cast<int>(StudentNames::STAN)] = 76;
+}
+
+
 
 
