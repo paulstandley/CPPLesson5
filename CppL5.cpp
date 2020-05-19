@@ -1,6 +1,8 @@
 #include "pch.h"
 #include <iostream>
 #include "CppLesson5.h"
+#include <iterator> // for std::size
+
 
 void prime_array_int()
 {
@@ -151,6 +153,45 @@ void arrays_and_enums()
     //use a static_cast to convert the enumerator to an integer
     int testScores_0[static_cast<int>(StudentNames::MAX_STUDENTS)]; // allocate 6 integers
     testScores_0[static_cast<int>(StudentNames::STAN)] = 76;
+}
+
+void passValue(int value) // value is a copy of the argument
+{
+    value = 99; // so changing it here won't change the value of the argument
+}
+
+void passArray(int prime[5]) // prime is the actual array
+{
+    prime[0] = 11; // so changing it here will change the original argument!
+    prime[1] = 7;
+    prime[2] = 5;
+    prime[3] = 3;
+    prime[4] = 2;
+}
+
+void passing_arrays_to_functions()
+{
+    int value = 1;
+    std::cout << "before passValue: " << value << "\n";
+    passValue(value);
+    std::cout << "after passValue: " << value << "\n";
+
+    int prime[5] = { 2, 3, 5, 7, 11 };
+    std::cout << "before passArray: " << prime[0] << " " << prime[1] << " "
+        << prime[2] << " " << prime[3] << " " << prime[4] << "\n";
+
+    passArray(prime);
+    std::cout << "after passArray: " << prime[0] << " " << prime[1] << " "
+        << prime[2] << " " << prime[3] << " " << prime[4] << "\n";
+    /*
+    In the example, value is not changed in main() because the parameter value in function
+    passValue() was a copy of variable value in function main(), not the actual variable.
+    However, because the parameter array in function passArray() is the actual array,
+    passArray() is able to directly change the value of the elements!
+
+    To ensure a function does not modify the array elements passed into it,
+    you can make the array const
+    */
 }
 
 

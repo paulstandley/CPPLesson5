@@ -8,6 +8,11 @@ void array_subscripts();
 void fixed_array_declarations();
 void fixed_array_initialization();
 void arrays_and_enums();
+void passing_arrays_to_functions();
+void passValue(int value);
+void passArray(int prime[5]);
+void printSize(int array[]);
+void sizeof_array();
 
 
 
