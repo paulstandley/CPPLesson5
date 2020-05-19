@@ -39,3 +39,17 @@ void double_array()
 	}
 }
 
+struct Rectangle
+{
+	int length;
+	int width;
+};
+
+void select_struct_array()
+{
+	Rectangle rects[5]; // declare an array of 5 Rectangle
+	rects[0].length = 24;
+	rects[0].width = 18;
+	std::cout << rects[0].length << '\t' << rects[0].width << std::endl;
+}
+

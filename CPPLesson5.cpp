@@ -5,23 +5,63 @@
 #include <iostream>
 #include "CppLesson5.h"
 
-struct Rectangle
+void array_subscripts()
 {
-	int length;
-	int width;
-};
+    int array[5]; // declare an array of length 5
 
-void select_struct_array()
+    // using a literal (constant) index:
+    array[1] = 7; // ok
+
+    // using an enum (constant) index
+    enum Animals
+    {
+        ANIMAL_CAT = 2
+    };
+    array[ANIMAL_CAT] = 4; // ok
+
+    // using a variable (non-constant) index:
+    short index = 3;
+    array[index] = 7; // ok
+
+    // using an expression that evaluates to an integer index:
+    array[1 + 2] = 7; // ok
+}
+
+void fixed_array_declarations()
 {
-	Rectangle rects[5]; // declare an array of 5 Rectangle
-	rects[0].length = 24;
-	rects[0].width = 18;
-	std::cout << rects[0].length << '\t' << rects[0].width << std::endl;
+    // using a literal constant
+    int array[5]; // Ok
+
+    // using a macro symbolic constant
+#define ARRAY_LENGTH 5
+    int array[ARRAY_LENGTH]; // Syntactically okay, but don't do this
+
+    // using a symbolic constant
+    const int arrayLength = 5;
+    int array[arrayLength]; // Ok
+
+    // using an enumerator
+    enum ArrayElements
+    {
+        MAX_ARRAY_LENGTH = 5
+    };
+    int array[MAX_ARRAY_LENGTH]; // Ok
+
+    /*
+    // using a non-const variable
+    int length;
+    std::cin >> length;
+    int array[length]; // Not ok -- length is not a compile-time constant!
+    // using a runtime const variable
+    int temp = 5;
+    const int length = temp; // the value of length isn't known until runtime, so this is a runtime constant, not a compile-time constant!
+    int array[length]; // Not ok        
+    */
 }
 
 int main()
 {
-	select_struct_array();
+    array_subscripts();
 	
 
 	return 0;
