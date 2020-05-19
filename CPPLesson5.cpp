@@ -5,63 +5,31 @@
 #include <iostream>
 #include "CppLesson5.h"
 
-void array_subscripts()
+void fixed_array()
 {
-    int array[5]; // declare an array of length 5
+	// use initializer list to initialize the fixed array
+	int prime_0[5] = { 2, 3, 5, 7, 11 }; 
 
-    // using a literal (constant) index:
-    array[1] = 7; // ok
+	// Initialize all elements to 0
+	int array_0[5] = { };
 
-    // using an enum (constant) index
-    enum Animals
-    {
-        ANIMAL_CAT = 2
-    };
-    array[ANIMAL_CAT] = 4; // ok
+	// Initialize all elements to 0.0
+	double array_1[5] = { };
 
-    // using a variable (non-constant) index:
-    short index = 3;
-    array[index] = 7; // ok
+	int prime_1[5]{ 2, 3, 5, 7, 11 }; 
+	// use uniform initialization to initialize the fixed array
+	// note the lack of the equals sign in this syntax
 
-    // using an expression that evaluates to an integer index:
-    array[1 + 2] = 7; // ok
-}
+	// explicitly define length of the array
+	int array_2[5] = { 0, 1, 2, 3, 4 }; 
 
-void fixed_array_declarations()
-{
-    // using a literal constant
-    int array[5]; // Ok
-
-    // using a macro symbolic constant
-#define ARRAY_LENGTH 5
-    int array[ARRAY_LENGTH]; // Syntactically okay, but don't do this
-
-    // using a symbolic constant
-    const int arrayLength = 5;
-    int array[arrayLength]; // Ok
-
-    // using an enumerator
-    enum ArrayElements
-    {
-        MAX_ARRAY_LENGTH = 5
-    };
-    int array[MAX_ARRAY_LENGTH]; // Ok
-
-    /*
-    // using a non-const variable
-    int length;
-    std::cin >> length;
-    int array[length]; // Not ok -- length is not a compile-time constant!
-    // using a runtime const variable
-    int temp = 5;
-    const int length = temp; // the value of length isn't known until runtime, so this is a runtime constant, not a compile-time constant!
-    int array[length]; // Not ok        
-    */
+	// let initializer list set length of the array
+	int array_3[] = { 0, 1, 2, 3, 4 }; 
 }
 
 int main()
 {
-    array_subscripts();
+    
 	
 
 	return 0;
