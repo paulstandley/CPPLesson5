@@ -8,48 +8,32 @@
 
 
 
-void loop_array_function()
+void best_score_array()
 {
-    // First, read in valid input from user
-    int number{};
-    do
+    int scores[]{ 84, 92, 76, 81, 56 };
+    int numStudents{ static_cast<int>(std::size(scores)) };
+
+    int maxScore{ 0 }; // keep track of our largest score
+    int maxIndex{ 0 };
+
+    // now look for a larger score
+    for (int student{ 0 }; student < numStudents; ++student)
     {
-        std::cout << "Enter a number between 1 and 9: ";
-        std::cin >> number;
-
-        // if the user entered an invalid character
-        if (std::cin.fail())
-            std::cin.clear(); // reset any error flags
-
-        std::cin.ignore(32767, '\n'); // ignore any extra characters in the input buffer (regardless of whether we had an error or not)
-
-    } while (number < 1 || number > 9);
-
-    // Next, print the array
-    int array[]{ 4, 6, 7, 3, 8, 2, 1, 9, 5 };
-    int arrayLength{ static_cast<int>(std::size(array)) };
-
-    for (int index{ 0 }; index < arrayLength; ++index)
-        std::cout << array[index] << ' ';
-
-    std::cout << '\n';
-
-    // Then, search the array to find the matching number and print the index
-    for (int index{ 0 }; index < arrayLength; ++index)
-    {
-        if (array[index] == number)
+        if (scores[student] > maxScore)
         {
-            std::cout << "The number " << number << " has index " << index << "\n";
-            break; // since each # in the array is unique, no need to search rest of array
+            maxScore = scores[student];
+            maxIndex = student;
         }
     }
+
+    std::cout << "The best score was " << maxScore << " at index " << maxIndex << '\n';
 }
 
 
 
 int main()
 {
-    loop_array_function();
+    best_score_array();
 
 	return 0;
 }

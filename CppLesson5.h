@@ -20,7 +20,7 @@ void animal_legs_array();
 void days_high_temperature();
 
 void loop_array_function();
-
+void best_score_array();
 
 
 
