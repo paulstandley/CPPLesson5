@@ -19,5 +19,9 @@ void sizeof_array();
 void animal_legs_array();
 void days_high_temperature();
 
+void loop_array_function();
+
+
+
 
 #endif // !CPPLESSON_5

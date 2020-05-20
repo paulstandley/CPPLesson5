@@ -6,57 +6,50 @@
 #include "CppLesson5.h"
 #include <iterator> // for std::size
 
-/*
-1) Declare an array to hold the high temperature (to the nearest tenth of a degree) for 
-each day of a year (assume 365 days in a year). 
-Initialize the array with a value of 0.0 for each day.
 
-2) Set up an enum with the names of the following animals: chicken, dog, cat, elephant, 
-duck, and snake.
-Put the enum in a namespace. 
-Define an array with an element for each of these animals, 
-and use an initializer list to initialize each element to hold the number of legs that 
-animal has.
-*/
 
-namespace Animals
+void loop_array_function()
 {
-	enum Animals
-	{
-		chicken,
-		dog,
-		cat,
-		elephant,
-		duck,
-		snake,
-		ARRAY_SIZE
-	};
+    // First, read in valid input from user
+    int number{};
+    do
+    {
+        std::cout << "Enter a number between 1 and 9: ";
+        std::cin >> number;
+
+        // if the user entered an invalid character
+        if (std::cin.fail())
+            std::cin.clear(); // reset any error flags
+
+        std::cin.ignore(32767, '\n'); // ignore any extra characters in the input buffer (regardless of whether we had an error or not)
+
+    } while (number < 1 || number > 9);
+
+    // Next, print the array
+    int array[]{ 4, 6, 7, 3, 8, 2, 1, 9, 5 };
+    int arrayLength{ static_cast<int>(std::size(array)) };
+
+    for (int index{ 0 }; index < arrayLength; ++index)
+        std::cout << array[index] << ' ';
+
+    std::cout << '\n';
+
+    // Then, search the array to find the matching number and print the index
+    for (int index{ 0 }; index < arrayLength; ++index)
+    {
+        if (array[index] == number)
+        {
+            std::cout << "The number " << number << " has index " << index << "\n";
+            break; // since each # in the array is unique, no need to search rest of array
+        }
+    }
 }
 
-void animal_legs_array()
-{
-	int animal[Animals::ARRAY_SIZE] = { 2, 4, 4, 4, 2, 0 };
-	for (int count = 0; count < Animals::ARRAY_SIZE; count++)
-	{
-		std::cout << "Index " << count << " value " << animal[count] << std::endl;
-	}
-}
-
-void days_high_temperature()
-{
-	double temperature_array[365] = { };
-	for (int count = 0; count < std::size(temperature_array); count++)
-	{
-		std::cout << "Count index: " << count << " array value: " << temperature_array[count] << std::endl;
-	}
-}
 
 
 int main()
 {
-    
-	days_high_temperature();
-	animal_legs_array();
+    loop_array_function();
 
 	return 0;
 }

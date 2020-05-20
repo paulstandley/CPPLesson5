@@ -224,5 +224,38 @@ void sizeof_array()
     std::cout << "The array has: " << std::size(array) << " elements\n";
 }
 
+namespace Animals
+{
+    enum Animals
+    {
+        chicken,
+        dog,
+        cat,
+        elephant,
+        duck,
+        snake,
+        ARRAY_SIZE
+    };
+}
+
+void animal_legs_array()
+{
+    int animal[Animals::ARRAY_SIZE] = { 2, 4, 4, 4, 2, 0 };
+    for (int count = 0; count < Animals::ARRAY_SIZE; count++)
+    {
+        std::cout << "Index " << count << " value " << animal[count] << std::endl;
+    }
+}
+
+void days_high_temperature()
+{
+    double temperature_array[365] = { };
+    for (int count = 0; count < std::size(temperature_array); count++)
+    {
+        std::cout << "Count index: " << count << " array value: " << temperature_array[count] << std::endl;
+    }
+}
+
+
 
 
