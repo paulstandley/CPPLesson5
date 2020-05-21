@@ -22,6 +22,10 @@ void days_high_temperature();
 void loop_array_function();
 void best_score_array();
 
+void array_swap();
+void array_selection_swap();
+void array_selection_sort();
+
 
 
 #endif // !CPPLESSON_5
