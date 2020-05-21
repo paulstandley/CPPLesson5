@@ -315,4 +315,60 @@ void best_score_array()
     std::cout << "The best score was " << maxScore << " at index " << maxIndex << '\n';
 }
 
+void array_swap()
+{
+    int x{ 2 };
+    int y{ 4 };
+    std::cout << "Before swap: x = " << x << ", y = " << y << '\n';
+    std::swap(x, y); // swap the values of x and y
+    std::cout << "After swap:  x = " << x << ", y = " << y << '\n';
+}
+
+void array_selection_swap()
+{
+    constexpr int length{ 5 };
+    int array[length]{ 30, 50, 20, 10, 40 };
+
+    // Step through each element of the array
+    // (except the last one, which will already be sorted by the time we get there)
+    for (int startIndex{ 0 }; startIndex < length - 1; ++startIndex)
+    {
+        // smallestIndex is the index of the smallest element we’ve encountered this iteration
+        // Start by assuming the smallest element is the first element of this iteration
+        int smallestIndex{ startIndex };
+
+        // Then look for a smaller element in the rest of the array
+        for (int currentIndex{ startIndex + 1 }; currentIndex < length; ++currentIndex)
+        {
+            // If we've found an element that is smaller than our previously found smallest
+            if (array[currentIndex] < array[smallestIndex])
+                // then keep track of it
+                smallestIndex = currentIndex;
+        }
+
+        // smallestIndex is now the smallest element in the remaining array
+                // swap our start element with our smallest element (this sorts it into the correct place)
+        std::swap(array[startIndex], array[smallestIndex]);
+    }
+
+    // Now that the whole array is sorted, print our sorted array as proof it works
+    for (int index{ 0 }; index < length; ++index)
+        std::cout << array[index] << ' ';
+
+    std::cout << '\n';
+}
+
+void array_selection_sort()
+{
+    int array[]{ 30, 50, 20, 10, 40 };
+
+    std::sort(std::begin(array), std::end(array));
+
+    for (int i{ 0 }; i < static_cast<int>(std::size(array)); ++i)
+        std::cout << array[i] << ' ';
+
+    std::cout << '\n';
+}
+
+
 

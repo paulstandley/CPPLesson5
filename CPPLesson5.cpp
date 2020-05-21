@@ -7,64 +7,47 @@
 #include <iterator> // for std::size
 #include <algorithm> // for std::swap, use <utility> instead if C++11
 
-void array_swap()
-{
-    int x{ 2 };
-    int y{ 4 };
-    std::cout << "Before swap: x = " << x << ", y = " << y << '\n';
-    std::swap(x, y); // swap the values of x and y
-    std::cout << "After swap:  x = " << x << ", y = " << y << '\n';
-}
+/*
+Manually show how selection sort works on the following array: { 30, 60, 20, 50, 40, 10 }. 
+Show the array after each swap that takes place.
+*/
 
-void array_selection_swap()
+void array_quiz_1()
 {
-	constexpr int length{ 5 };
-	int array[length]{ 30, 50, 20, 10, 40 };
-
+	constexpr int length{ 6 };
+	int array[length]{ 30, 60, 20, 50, 40, 10 };
 	// Step through each element of the array
 	// (except the last one, which will already be sorted by the time we get there)
-	for (int startIndex{ 0 }; startIndex < length - 1; ++startIndex)
+	for (int start_index = 0; start_index < length - 1; start_index++)
 	{
 		// smallestIndex is the index of the smallest element we’ve encountered this iteration
 		// Start by assuming the smallest element is the first element of this iteration
-		int smallestIndex{ startIndex };
-
+		int smallest_index{ start_index };
 		// Then look for a smaller element in the rest of the array
-		for (int currentIndex{ startIndex + 1 }; currentIndex < length; ++currentIndex)
+		for (int current_index = start_index + 1; current_index < length; current_index++)
 		{
 			// If we've found an element that is smaller than our previously found smallest
-			if (array[currentIndex] < array[smallestIndex])
+			if (array[current_index] < array[smallest_index])
+			{					// > decending
 				// then keep track of it
-				smallestIndex = currentIndex;
+				smallest_index = current_index;
+			}
+			// smallestIndex is now the smallest element in the remaining array
+			// swap our start element with our smallest element (this sorts it into the correct place)
+			std::swap(array[start_index], array[smallest_index]);
 		}
-
-		// smallestIndex is now the smallest element in the remaining array
-				// swap our start element with our smallest element (this sorts it into the correct place)
-		std::swap(array[startIndex], array[smallestIndex]);
+		// print on each interation
+		for (int index = 0; index < length; index++)
+		{
+			std::cout << array[index] << ' ';
+		}
+		std::cout << '\n';
 	}
-
-	// Now that the whole array is sorted, print our sorted array as proof it works
-	for (int index{ 0 }; index < length; ++index)
-		std::cout << array[index] << ' ';
-
-	std::cout << '\n';
-}
-
-void array_selection_sort()
-{
-	int array[]{ 30, 50, 20, 10, 40 };
-
-	std::sort(std::begin(array), std::end(array));
-
-	for (int i{ 0 }; i < static_cast<int>(std::size(array)); ++i)
-		std::cout << array[i] << ' ';
-
-	std::cout << '\n';
 }
 
 int main()
 {
-	array_selection_sort();
+	array_quiz_1();
 
 	return 0;
 }
