@@ -26,6 +26,8 @@ void array_swap();
 void array_selection_swap();
 void array_selection_sort();
 
+void array_quiz_1();
+
 
 
 #endif // !CPPLESSON_5
