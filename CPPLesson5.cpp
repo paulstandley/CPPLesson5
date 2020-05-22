@@ -7,50 +7,87 @@
 #include <iterator> // for std::size
 #include <algorithm> // for std::swap, use <utility> instead if C++11
 
-/*
-Question #3
-This one is going to be difficult, so put your game face on.
-Another simple sort is called “bubble sort”. 
-Bubble sort works by comparing adjacent pairs of elements, and swapping them if the criteria 
-is met, so that elements “bubble” to the end of the array. 
-Although there are quite a few ways to optimize bubble sort, 
-in this quiz we’ll stick with the unoptimized version here because it’s simplest.
 
-Unoptimized bubble sort performs the following steps to sort an array from smallest to largest:
-
-A) Compare array element 0 with array element 1. 
-If element 0 is larger, swap it with element 1.
-
-B) Now do the same for elements 1 and 2, and every subsequent pair of elements until you 
-hit the end of the array. At this point, the last element in the array will be sorted.
-
-C) Repeat the first two steps again until the array is sorted.
-
-Write code that bubble sorts the following array according to the rules above:
-
-int array[]{ 6, 3, 2, 9, 7, 1, 5, 4, 8 };
-Print the sorted array elements at the end of your program.
-
-Hint: If we’re able to sort one element per iteration, that means we’ll need to iterate roughly 
-as many times as there are numbers in our array to guarantee that the whole array is sorted.
-Hint: When comparing pairs of elements, be careful of your array’s range.
-*/
-
-void bubble_sort()
+void optimization_bubble_sort()
 {
-	int array[]{ 6, 3, 2, 9, 7, 1, 5, 4, 8 };
-	constexpr int length{ static_cast<int>(std::size(array)) };
+    int array[]{ 6, 3, 2, 9, 7, 1, 5, 4, 8 };
+    constexpr int length{ static_cast<int>(std::size(array)) };
+    int keep_count{ 0 };
+    int highest_number{ 0 };
+    int highest_index{ 0 };
 
     // Step through each element of the array (except the last, which will already be sorted by the time we get to it)
-    for (int iteration{ 0 }; iteration < length - 1; ++iteration)
+    for (int iteration{ 0 }; iteration < length; ++iteration)
     {
+        keep_count++;
+        bool count_swaps{ false };
         // Search through all elements up to the end of the array - 1
         // The last element has no pair to compare against
         for (int currentIndex{ 0 }; currentIndex < length - 1; ++currentIndex)
         {
+            keep_count++;
+
             // If the current element is larger than the element after it, swap them
             if (array[currentIndex] > array[currentIndex + 1])
+            {
                 std::swap(array[currentIndex], array[currentIndex + 1]);
+                count_swaps = true;
+                highest_index = currentIndex;
+                highest_number = array[currentIndex];
+            }
+            ++currentIndex;
+        }
+        if (!count_swaps)
+        {
+            std::cout << "Early termination on iteration " << keep_count << '\n';
+            break;
+        }
+        ++iteration;
+        std::cout << highest_number << '\t' << highest_index << '\n';
+    }
+
+    // Now print our sorted array as proof it works
+    for (int index{ 0 }; index < length; ++index)
+        std::cout << array[index] << ' ';
+
+    std::cout << '\n' << keep_count << '\n';
+
+}
+
+void learnCPP()
+{
+    int array[]{ 6, 3, 2, 9, 7, 1, 5, 4, 8 };
+    constexpr int length{ static_cast<int>(std::size(array)) }; // C++17
+//  constexpr int length{ sizeof(array) / sizeof(array[0]) }; // use instead if not C++17 capable
+
+    // Step through each element of the array except the last
+    for (int iteration{ 0 }; iteration < length - 1; ++iteration)
+    {
+        // Account for the fact that the last element is already sorted with each subsequent iteration
+        // so our array "ends" one element sooner
+        int endOfArrayIndex{ length - iteration };
+
+        bool swapped{ false }; // Keep track of whether any elements were swapped this iteration
+
+        // Search through all elements up to the end of the array - 1
+        // The last element has no pair to compare against
+        for (int currentIndex{ 0 }; currentIndex < endOfArrayIndex - 1; ++currentIndex)
+        {
+            // If the current element is larger than the element after it
+            if (array[currentIndex] > array[currentIndex + 1])
+            {
+                // Swap them
+                std::swap(array[currentIndex], array[currentIndex + 1]);
+                swapped = true;
+            }
+        }
+
+        // If we haven't swapped any elements this iteration, we're done early
+        if (!swapped)
+        {
+            // iteration is 0 based, but counting iterations is 1-based.  So add 1 here to adjust.
+            std::cout << "Early termination on iteration: " << iteration + 1 << '\n';
+            break;
         }
     }
 
@@ -59,12 +96,12 @@ void bubble_sort()
         std::cout << array[index] << ' ';
 
     std::cout << '\n';
-
 }
+
 
 int main()
 {
-	bubble_sort();
+    optimization_bubble_sort();
 
 	return 0;
 }
