@@ -3,6 +3,7 @@
 #include "CppLesson5.h"
 #include <iterator> // for std::size
 #include <algorithm> // for std::swap, use <utility> instead if C++11
+#include <cstring> // for std::strcpy strcpy_s
 
 
 void prime_array_int()
@@ -604,6 +605,24 @@ void times_tables()
     }
 }
 
+void c_style_strings()
+{
+    char my_string[]{ "string" };
+    const int length{ static_cast<int>(std::size(my_string)) };
 
+    std::cout << "My string has a length of " << length << " characters.\n";
+
+    for (int index = 0; index < length; index++)
+    {
+        std::cout << static_cast<int>(my_string[index]) << " ";
+    }
+    std::cout << '\n';
+
+    my_string[1] = 'p';// change t for p
+    std::cout << my_string << '\n';
+
+    char name[20]{ "Paul" }; // only use 5 characters (4 letters + null terminator)
+    std::cout << "My name is: " << name << '\n';
+}
 
 

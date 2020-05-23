@@ -30,8 +30,11 @@ void array_quiz_1();
 void bubble_sort();
 void optimization_bubble_sort();
 void learnCPP();
+
 void two_dimensional_arrays();
 void times_tables();
 
+void c_style_strings();
+void c_style_strings_manipulation();
 
 #endif // !CPPLESSON_5
