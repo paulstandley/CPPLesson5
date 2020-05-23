@@ -36,5 +36,8 @@ void times_tables();
 
 void c_style_strings();
 void c_style_strings_manipulation();
+void c_style_strings_cin();
+void c_style_strings_manipulation_strcpy_s();
+
 
 #endif // !CPPLESSON_5

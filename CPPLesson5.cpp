@@ -8,40 +8,46 @@
 #include <algorithm> // for std::swap, use <utility> instead if C++11
 #include <cstring> // for std::strcpy strcpy_s
 
-#define __STDC_WANT_LIB_EXT1__ 1
-
-
-void c_style_strings_cin()
+void c_style_name()
 {
-	char name[255]; // declare array large enough to hold 255 characters
-	std::cout << "Enter your name: ";
-	std::cin.getline(name, std::size(name));
-	std::cout << "You entered: " << name << '\n';
+	char name[20]{ "Paul" }; // only use 5 characters (4 letters + null terminator)
+	std::cout << "My name is: " << name << '\n';
+	std::cout << name << " has " << std::strlen(name) << " letters.\n";
+	std::cout << name << " has " << std::size(name) << " characters in the array.\n";
+	// use sizeof(name) / sizeof(name[0]) if not C++17 capable
+	/*
+	Other useful functions:
+	strcat() -- Appends one string to another (dangerous)
+	strncat() -- Appends one string to another (with buffer length check)
+	strcmp() -- Compare two strings (returns 0 if equal)
+	strncmp() -- Compare two strings up to a specific number of characters (returns 0 if equal)
+	*/
 }
 
-void c_style_strings_manipulation()
+void c_style_dont_use()
 {
-	char source_1[]{ "Copy this!" };
-	char dest_1[5]; // note that the length of dest_1 is only 5 chars!
-	std::strcpy(dest_1, source_1); // overflow!
-	std::cout << dest_1 << '\n';
+	// Ask the user to enter a string
+	char buffer[255];
+	std::cout << "Enter a string: ";
+	std::cin.getline(buffer, std::size(buffer));
+
+	int spacesFound{ 0 };
+	int bufferLength{ static_cast<int>(std::strlen(buffer)) };
+	// Loop through all of the characters the user entered
+	for (int index{ 0 }; index < bufferLength; ++index)
+	{
+		// If the current character is a space, count it
+		if (buffer[index] == ' ')
+			++spacesFound;
+	}
+
+	std::cout << "You typed " << spacesFound << " spaces!\n";
 }
-
-void c_style_strings_manipulation_strcpy_s()
-{
-	// #define __STDC_WANT_LIB_EXT1__ 1
-	char source[]{ "Copy this!" };
-	char dest[5]; // note that the length of dest is only 5 chars!
-	strcpy_s(dest, 5, source); // A runtime error will occur in debug mode
-	std::cout << dest << '\n';
-}
-
-
 
 
 int main()
 {
-	c_style_strings_manipulation();
+	c_style_dont_use();
 
 	return 0;
 }
