@@ -28,7 +28,8 @@ void array_selection_sort();
 
 void array_quiz_1();
 void bubble_sort();
-
+void optimization_bubble_sort();
+void learnCPP();
 
 
 #endif // !CPPLESSON_5
