@@ -554,6 +554,55 @@ void learnCPP()
     std::cout << '\n';
 }
 
+void two_dimensional_arrays()
+{
+
+    constexpr int num_row{ 3 };
+    constexpr int num_col{ 5 };
+
+    int dimensional_array[num_row][num_col]
+    {
+      { 1, 2 }, // row 0 = 1, 2, 0, 0, 0
+      { 6, 7, 8 }, // row 1 = 6, 7, 8, 0, 0
+      { 11, 12, 13, 14 } // row 2 = 11, 12, 13, 14, 0
+    };
+
+    // step through the rows in the array
+    for (int row{ 0 }; row < num_row; ++row)
+    {
+        // step through each element in the row
+        for (int col = 0; col < num_col; ++col)
+        {
+            std::cout << dimensional_array[row][col] << '\t';
+        }
+        std::cout << '\n';
+    }
+}
+
+void times_tables()
+{
+    std::cout << "The 1 to 12 time table" << '\n' << '\n';
+    // compile time variable constant :-)
+    constexpr int num_rows{ 13 };
+    constexpr int num_cols{ 13 };
+    // declare an 13X13 array with 0 as all values
+    int product[num_rows][num_cols]{};
+
+    // calculate the 12 times table first array elements are 0
+    for (int row{ 1 }; row < num_rows; ++row)
+        for (int col{ 1 }; col < num_cols; ++col)
+            product[row][col] = row * col;
+
+    // print value
+    for (int row{ 1 }; row < num_rows; ++row)
+    {
+        for (int col{ 1 }; col < num_cols; ++col)
+        {
+            std::cout << row << "*" << col <<  "=" << product[row][col] << "|";
+        }
+        std::cout << '\n';
+    }
+}
 
 
 

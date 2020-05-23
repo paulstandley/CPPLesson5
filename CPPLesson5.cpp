@@ -7,59 +7,31 @@
 #include <iterator> // for std::size
 #include <algorithm> // for std::swap, use <utility> instead if C++11
 
-void two_dimensional_arrays()
+
+void c_style_strings()
 {
-    
-    constexpr int num_row{ 3 };
-    constexpr int num_col{ 5 };
+	char my_string[]{ "string" };
+	const int length{ static_cast<int>(std::size(my_string)) };
 
-    int dimensional_array[num_row][num_col]
-    {
-      { 1, 2 }, // row 0 = 1, 2, 0, 0, 0
-      { 6, 7, 8 }, // row 1 = 6, 7, 8, 0, 0
-      { 11, 12, 13, 14 } // row 2 = 11, 12, 13, 14, 0
-    };
+	std::cout << "My string has a length of " << length << " characters.\n";
 
-    // step through the rows in the array
-    for (int row{ 0 }; row < num_row; ++row)
-    {
-        // step through each element in the row
-        for (int col = 0; col < num_col; ++col)
-        {
-            std::cout << dimensional_array[row][col] << '\t';
-        }
-        std::cout << '\n';
-    }
-}
+	for (int index = 0; index < length; index++)
+	{
+		std::cout << static_cast<int>(my_string[index]) << " ";
+	}
+	std::cout << '\n';
 
-void times_tables()
-{
-    std::cout << "The 12 time table" << '\n' << '\n';
-    // compile time variable constant :-)
-    constexpr int num_rows{ 13 };
-    constexpr int num_cols{ 13 };
-    // declare an 13X13 array with 0 as all values
-    int product[num_rows][num_cols]{};
+	my_string[1] = 'p';// change t for p
+	std::cout << my_string << '\n';
 
-    // calculate the 12 times table first array elements are 0
-    for (int row{ 1 }; row < num_rows; ++row)
-        for (int col{ 1 }; col < num_cols; ++col)
-            product[row][col] = row * col;
-
-    // print value
-    for (int row{ 1 }; row < num_rows; ++row)
-    {
-        for (int col{ 1 }; col < num_cols; ++col)
-            std::cout << product[row][col] << " |" << '\t';
-
-        std::cout << '\n' << '\n';
-    }
+	char name[20]{ "Paul" }; // only use 5 characters (4 letters + null terminator)
+	std::cout << "My name is: " << name << '\n';
 }
 
 
 int main()
 {
-    times_tables();
+	c_style_strings();
 
 	return 0;
 }
