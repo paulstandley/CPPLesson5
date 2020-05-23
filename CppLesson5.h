@@ -38,6 +38,7 @@ void c_style_strings();
 void c_style_strings_manipulation();
 void c_style_strings_cin();
 void c_style_strings_manipulation_strcpy_s();
+void c_style_dont_use();
 
 
 #endif // !CPPLESSON_5
