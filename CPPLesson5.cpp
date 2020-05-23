@@ -26,17 +26,40 @@ void two_dimensional_arrays()
         // step through each element in the row
         for (int col = 0; col < num_col; ++col)
         {
-            std::cout << dimensional_array[row][col];
+            std::cout << dimensional_array[row][col] << '\t';
         }
         std::cout << '\n';
     }
+}
 
+void times_tables()
+{
+    std::cout << "The 12 time table" << '\n' << '\n';
+    // compile time variable constant :-)
+    constexpr int num_rows{ 13 };
+    constexpr int num_cols{ 13 };
+    // declare an 13X13 array with 0 as all values
+    int product[num_rows][num_cols]{};
+
+    // calculate the 12 times table first array elements are 0
+    for (int row{ 1 }; row < num_rows; ++row)
+        for (int col{ 1 }; col < num_cols; ++col)
+            product[row][col] = row * col;
+
+    // print value
+    for (int row{ 1 }; row < num_rows; ++row)
+    {
+        for (int col{ 1 }; col < num_cols; ++col)
+            std::cout << product[row][col] << " |" << '\t';
+
+        std::cout << '\n' << '\n';
+    }
 }
 
 
 int main()
 {
-    two_dimensional_arrays();
+    times_tables();
 
 	return 0;
 }
